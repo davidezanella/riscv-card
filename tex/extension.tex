@@ -103,13 +103,13 @@ fdiv.s    & Flt Div               & R     & 1010011    &        & 0000110 &     
 fsgnj.s   & Flt Sign Injection    & R     & 1010011    & 000    & 0001000 &        & & rd = abs(rs1) * sgn(rs2) \\
 fsgnjn.s  & Flt Sign Neg Injection& R     & 1010011    & 001    & 0001000 &        & & rd = abs(rs1) * -sgn(rs2) \\
 fsgnjx.s  & Flt Sign Xor Injection& R     & 1010011    & 010    & 0001000 &        & & rd = rs1 * sgn(rs2)  \\
-fmin.s    & Flt Minimum           & R     & 1010011    &        &         &        & & rd = min(rs1, rs2)   \\
-fmax.s    & Flt Maximum           & R     & 1010011    &        &         &        & & rd = max(rs1, rs2)   \\
-fsqrt.s   & Flt Square Root       & R     & 1010011    &        &         &        & & rd = sqrt(rs1)       \\
+fmin.s    & Flt Minimum           & R     & 1010011    &        & 0001100 &        & & rd = min(rs1, rs2)   \\
+fmax.s    & Flt Maximum           & R     & 1010011    &        & 0001100 &        & & rd = max(rs1, rs2)   \\
+fsqrt.s   & Flt Square Root       & R     & 1010011    &        & 0101100 & 00000  & & rd = sqrt(rs1)       \\
 \hline
-fle.s     & Float Less / Equal    & R     & 1010011    & 000    & 0101001 &        & & rd = (rs1 <= rs2) ? 1 : 0\\
-flt.s     & Float Less Than       & R     & 1010011    & 001    & 0101001 &        & & rd = (rs1 <  rs2) ? 1 : 0 \\
-feq.s     & Float Equality        & R     & 1010011    & 010    & 0101001 &        & & rd = (rs1 == rs2) ? 1 : 0 \\
+fle.s     & Float Less / Equal    & R     & 1010011    & 000    & 0101000 &        & & rd = (rs1 <= rs2) ? 1 : 0\\
+flt.s     & Float Less Than       & R     & 1010011    & 001    & 0101000 &        & & rd = (rs1 <  rs2) ? 1 : 0 \\
+feq.s     & Float Equality        & R     & 1010011    & 010    & 0101000 &        & & rd = (rs1 == rs2) ? 1 : 0 \\
 \hline
 fcvt.w.s  & Flt Convert to Int    & R     & 1010011    &        & 0110000 & 00000  & & rd = (int32\_t) rs1 \\
 fcvt.wu.s & Flt Convert to Int    & R     & 1010011    &        & 0110000 & 00001  & & rd = (uint32\_t) rs1 \\
@@ -128,10 +128,50 @@ fnmsub.s  & Flt Neg Fused Mul-Sub & R4    & 1001111    &        &        &      
 \end{tabular}
 \end{center}
 
-
+\newpage
 \subsection*{RV32D Double-Precision Floating-Point Extension}
 
+\begin{center}
+\begin{tabular}
+{T | l | c | T | T | T | T | T | T } \hline
+\rm Inst  & Name                  & FMT   & \rm Opcode & \rm funct3/rm & \rm funct7 & \rm rs2 [20...24] & \rm fmt & \rm Description (C)         \\ \hline
+fld       & Flt Load Word         & I     & 0000111    & 011    &        &        & & rd = M[rs1 + imm]    \\
+fsd       & Flt Store Word        & I     & 0100111    & 011    &        &        & & M[rs1 + imm] = rs2   \\
+\hline
+fadd.d    & Flt Add               & R     & 1010011    &        & 0000001 &        & & rd = rs1 + rs2       \\
+fsub.d    & Flt Sub               & R     & 1010011    &        & 0000011 &        & & rd = rs1 - rs2       \\
+fmul.d    & Flt Mul               & R     & 1010011    &        & 0000101 &        & & rd = rs1 * rs2       \\
+fdiv.d    & Flt Div               & R     & 1010011    &        & 0000111 &        & & rd = rs1 / rs2       \\
+fsgnj.d   & Flt Sign Injection    & R     & 1010011    & 000    & 0001001 &        & & rd = abs(rs1) * sgn(rs2) \\
+fsgnjn.d  & Flt Sign Neg Injection& R     & 1010011    & 001    & 0001001 &        & & rd = abs(rs1) * -sgn(rs2) \\
+fsgnjx.d  & Flt Sign Xor Injection& R     & 1010011    & 010    & 0001001 &        & & rd = rs1 * sgn(rs2)  \\
+fmin.d    & Flt Minimum           & R     & 1010011    &        & 0001101 &        & & rd = min(rs1, rs2)   \\
+fmax.d    & Flt Maximum           & R     & 1010011    &        & 0001101 &        & & rd = max(rs1, rs2)   \\
+fsqrt.d   & Flt Square Root       & R     & 1010011    &        & 0101101 & 00000  & & rd = sqrt(rs1)       \\
+\hline
+fle.d     & Float Less / Equal    & R     & 1010011    & 000    & 0101001 &        & & rd = (rs1 <= rs2) ? 1 : 0\\
+flt.d     & Float Less Than       & R     & 1010011    & 001    & 0101001 &        & & rd = (rs1 <  rs2) ? 1 : 0 \\
+feq.d     & Float Equality        & R     & 1010011    & 010    & 0101001 &        & & rd = (rs1 == rs2) ? 1 : 0 \\
+\hline
+fcvt.w.d  & Flt Convert to Int    & R     & 1010011    &        & 0110001 & 00000  & & rd = (int32\_t) rs1 \\
+fcvt.wu.d & Flt Convert to Int    & R     & 1010011    &        & 0110001 & 00001  & & rd = (uint32\_t) rs1 \\
+fcvt.s.d   & Double Flt to Single & R     & 1010011    & 000    & 0010000 & 00001  & & rd = *((float*) \&rs1) \\
+fmv.x.d   & Move Int to Float     & R     & 1010011    & 000    & 0111101 & 00000  & & rd = *((float*) \&rs1) \\
+fclass.d  & Float Classify        & R     & 1010011    & 001    & 0111001 & 00000  & & rd = 0..9 \\
+\hline
+fcvt.d.w  & Flt Conv from Sign Int& R     & 1010011    &        & 0110101 & 00000  & & rd = (float) rs1 \\
+fcvt.d.wu & Flt Conv from Uns Int & R     & 1010011    &        & 0110101 & 00001  & & rd = (float) rs1 \\
+fcvt.d.s   & Single Flt to Double & R     & 1010011    & 000    & 0010001 & 00001  & & rd = *((float*) \&rs1) \\
+\hline
+fmadd.d   & Flt Fused Mul-Add     & R4    & 1000011    &        &        &        & 01 & rd = rs1 * rs2 + rs3 \\
+fmsub.d   & Flt Fused Mul-Sub     & R4    & 1000111    &        &        &        & 01 & rd = rs1 * rs2 - rs3 \\
+fnmadd.d  & Flt Neg Fused Mul-Add & R4    & 1001011    &        &        &        & 01 & rd = -rs1 * rs2 + rs3 \\
+fnmsub.d  & Flt Neg Fused Mul-Sub & R4    & 1001111    &        &        &        & 01 & rd = -rs1 * rs2 - rs3 \\
+\hline
+\end{tabular}
+\end{center}
 
+\newpage
 \subsection*{RV32C Compressed Extension}
 
 \small
