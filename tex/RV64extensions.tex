@@ -104,3 +104,20 @@ fcvt.q.lu   & Convert from unsigned 64-bit integer & R   & 1010011  &      & 000
 
 \end{tabular}
 \end{center}
+
+
+\subsection*{RV64C Compressed Extension (in addition to RV32C)}
+
+\begin{center}
+\begin{tabular}
+{T | l | c | c | c | c | c | c | c | T } \hline
+\rm Inst   & Name                    & FMT & \rm OP & \rm funct4 & \rm funct3 & \rm [12] & \rm [11..10] & \rm [6..5] & \rm Description          \\ \hline
+c.ld       & Load Double             & CL  & 00     & & 011 & & &       & ld rd', (8*imm)(rs1')    \\
+c.sd       & Store Double            & CS  & 00     & & 111 & & &       & sd rs1', (8*imm)(rs2')   \\
+c.addiw    & ADD Immediate Word      & CI  & 01     & & 001 & & &       & addiw rd, rd, imm        \\
+c.ldsp     & Load Double from SP     & CI  & 10     & & 011 & & &       & ld rd, (8*imm)(sp)       \\
+c.sdsp     & Store Double to SP      & CSS & 10     & & 111 & & &       & sd rs2, (8*imm)(sp)      \\
+\hline
+\end{tabular}
+\end{center}
+    
