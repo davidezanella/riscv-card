@@ -3,16 +3,16 @@
 \subsection*{RV32M Multiply Extension}
 \begin{center}
 \begin{tabular}
-{T | l | c | T | T | T | C } \hline
+{T | l | c | c | c | c | C } \hline
 \rm Inst & Name              & FMT & \rm Opcode & \rm funct3 & \rm funct7 & \rm Description (C)     \\ \hline
-mul      & MUL               & R   & 0110011    & 0x0    & 0x01   & rd = (rs1 * rs2)[31:0]  \\
-mulh     & MUL High          & R   & 0110011    & 0x1    & 0x01   & rd = (rs1 * rs2)[63:32] \\
-mulsu    & MUL High (S) (U)  & R   & 0110011    & 0x2    & 0x01   & rd = (rs1 * rs2)[63:32] \\
-mulu     & MUL High (U)      & R   & 0110011    & 0x3    & 0x01   & rd = (rs1 * rs2)[63:32] \\
-div      & DIV               & R   & 0110011    & 0x4    & 0x01   & rd = rs1 / rs2          \\
-divu     & DIV (U)           & R   & 0110011    & 0x5    & 0x01   & rd = rs1 / rs2          \\
-rem      & Remainder         & R   & 0110011    & 0x6    & 0x01   & rd = rs1 \% rs2         \\
-remu     & Remainder (U)     & R   & 0110011    & 0x7    & 0x01   & rd = rs1 \% rs2         \\
+mul      & MUL               & R   & 0110011    & 000    & 0000001   & rd = (rs1 * rs2)[31:0]  \\
+mulh     & MUL High          & R   & 0110011    & 001    & 0000001   & rd = (rs1 * rs2)[63:32] \\
+mulsu    & MUL High (S) (U)  & R   & 0110011    & 010    & 0000001   & rd = (rs1 * rs2)[63:32] \\
+mulu     & MUL High (U)      & R   & 0110011    & 011    & 0000001   & rd = (rs1 * rs2)[63:32] \\
+div      & DIV               & R   & 0110011    & 100    & 0000001   & rd = rs1 / rs2          \\
+divu     & DIV (U)           & R   & 0110011    & 101    & 0000001   & rd = rs1 / rs2          \\
+rem      & Remainder         & R   & 0110011    & 110    & 0000001   & rd = rs1 \% rs2         \\
+remu     & Remainder (U)     & R   & 0110011    & 111    & 0000001   & rd = rs1 \% rs2         \\
 \hline
 \end{tabular}
 \end{center}
@@ -48,18 +48,18 @@ remu     & Remainder (U)     & R   & 0110011    & 0x7    & 0x01   & rd = rs1 \% 
 \end{tabular}
 
 \begin{tabular}
-{T | l | c | T | T | T | T } \hline
+{T | l | c | c | c | c | T } \hline
 \rm Inst  & Name              & FMT   & \rm Opcode & \rm funct3 & \rm funct5 & \rm Description (C)         \\ \hline
-lr.w      & Load Reserved     & R     & 0101111    & 0x2    & 0x02   & rd = M[rs1], reserve M[rs1] \\
-sc.w      & Store Conditional & R     & 0101111    & 0x2    & 0x03   & \parbox[t]{2.5in}{ if (reserved) \{ M[rs1] = rs2; rd = 0 \} \\
+lr.w      & Load Reserved     & R     & 0101111    & 010    & 00010   & rd = M[rs1], reserve M[rs1] \\
+sc.w      & Store Conditional & R     & 0101111    & 010    & 00011   & \parbox[t]{2.5in}{ if (reserved) \{ M[rs1] = rs2; rd = 0 \} \\
                                                                         else \{ rd = 1 \}}   \\
-amoswap.w & Atomic Swap       & R     & 0101111    & 0x2    & 0x01   & rd = M[rs1]; swap(rd, rs2); M[rs1] = rd \\
-amoadd.w  & Atomic ADD        & R     & 0101111    & 0x2    & 0x00   & rd = M[rs1] + rs2; M[rs1] = rd \\
-amoand.w  & Atomic AND        & R     & 0101111    & 0x2    & 0x0C   & rd = M[rs1] \& rs2; M[rs1] = rd \\
-amoor.w   & Atomic OR         & R     & 0101111    & 0x2    & 0x0A   & rd = M[rs1] | rs2; M[rs1] = rd \\
-amoxor.w  & Atomix XOR        & R     & 0101111    & 0x2    & 0x04   & rd = M[rs1] \^{} rs2; M[rs1] = rd \\
-amomax.w  & Atomic MAX        & R     & 0101111    & 0x2    & 0x14   & rd = max(M[rs1], rs2); M[rs1] = rd \\
-amomin.w  & Atomic MIN        & R     & 0101111    & 0x2    & 0x10   & rd = min(M[rs1], rs2); M[rs1] = rd \\
+amoswap.w & Atomic Swap       & R     & 0101111    & 010    & 00001   & rd = M[rs1]; swap(rd, rs2); M[rs1] = rd \\
+amoadd.w  & Atomic ADD        & R     & 0101111    & 010    & 00000   & rd = M[rs1] + rs2; M[rs1] = rd \\
+amoand.w  & Atomic AND        & R     & 0101111    & 010    & 01100  & rd = M[rs1] \& rs2; M[rs1] = rd \\
+amoor.w   & Atomic OR         & R     & 0101111    & 010    & 01010   & rd = M[rs1] | rs2; M[rs1] = rd \\
+amoxor.w  & Atomix XOR        & R     & 0101111    & 010    & 00100   & rd = M[rs1] \^{} rs2; M[rs1] = rd \\
+amomax.w  & Atomic MAX        & R     & 0101111    & 010    & 10100   & rd = max(M[rs1], rs2); M[rs1] = rd \\
+amomin.w  & Atomic MIN        & R     & 0101111    & 010    & 10000   & rd = min(M[rs1], rs2); M[rs1] = rd \\
 \hline
 \end{tabular}
 \end{center}
@@ -91,7 +91,7 @@ amomin.w  & Atomic MIN        & R     & 0101111    & 0x2    & 0x10   & rd = min(
 \end{tabular}
 
 \begin{tabular}
-{T | l | c | T | T | T | T | T | T } \hline
+{T | l | c | c | c | c | c | c | T } \hline
 \rm Inst  & Name                  & FMT   & \rm Opcode & \rm funct3/rm & \rm funct7 & \rm rs2 [20...24] & \rm fmt & \rm Description (C)         \\ \hline
 flw       & Flt Load Word         & I     & 0000111    & 010    &        &        & & rd = M[rs1 + imm]    \\
 fsw       & Flt Store Word        & I     & 0100111    & 010    &        &        & & M[rs1 + imm] = rs2   \\
@@ -133,7 +133,7 @@ fnmsub.s  & Flt Neg Fused Mul-Sub & R4    & 1001111    &        &        &      
 
 \begin{center}
 \begin{tabular}
-{T | l | c | T | T | T | T | T | T } \hline
+{T | l | c | c | c | c | c | c | T } \hline
 \rm Inst  & Name                  & FMT   & \rm Opcode & \rm funct3/rm & \rm funct7 & \rm rs2 [20...24] & \rm fmt & \rm Description (C)         \\ \hline
 fld       & Flt Load Word         & I     & 0000111    & 011    &        &        & & rd = M[rs1 + imm]    \\
 fsd       & Flt Store Word        & I     & 0100111    & 011    &        &        & & M[rs1 + imm] = rs2   \\
@@ -176,7 +176,7 @@ fnmsub.d  & Flt Neg Fused Mul-Sub & R4    & 1001111    &        &        &      
 
 \begin{center}
 \begin{tabular}
-{T | l | c | T | T | T | T | T | T } \hline
+{T | l | c | c | c | c | c | c | T } \hline
 \rm Inst  & Name                  & FMT   & \rm Opcode & \rm funct3/rm & \rm funct7 & \rm rs2 [20...24] & \rm fmt & \rm Description (C)         \\ \hline
 flq       & Flt Load Word         & I     & 0000111    & 100    &        &        & & rd = M[rs1 + imm]    \\
 fsq       & Flt Store Word        & I     & 0100111    & 100    &        &        & & M[rs1 + imm] = rs2   \\
@@ -330,7 +330,7 @@ CJ-type \\
 
 \begin{center}
 \begin{tabular}
-{T | l | c | T | T | T } \hline
+{T | l | c | c | c | T } \hline
 \rm Inst   & Name                    & FMT & \rm OP & \rm Funct & \rm Description          \\ \hline
 c.lwsp     & Load Word from SP       & CI  & 10     & 010       & lw rd, (4*imm)(sp)       \\
 %c.ldsp     & Load Double from SP     & CI  & 10     & 011       & ld rd, (8*imm)(sp)       \\
