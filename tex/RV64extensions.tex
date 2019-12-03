@@ -1,0 +1,106 @@
+
+\subsection*{RV64I Base Integer Instructions (in addition to RV32I)}
+\begin{center}
+    
+\begin{tabular}
+{T | l | c | c | c | c | T} \hline
+\rm Inst & Name                    & FMT & \rm Opcode & \rm funct3 & \rm funct7 & \rm Description (C)          \\ \hline
+addw     & Add registers   & R   & 0111011    & 000    & 0000000   &                \\
+subw     & Subtract registers & R   & 0111011    & 000    & 0100000   &             \\
+sllw     & Shift left logical by register & R   & 0111011    & 001    & 0000000   &                \\
+srlw     & Shift right logical by register & R   & 0111011    & 101    & 0000000   &               \\
+sraw     & Shift right arithmetic by register & R   & 0111011    & 101    & 0100000   &        \\
+addiw    & Add immediate & I   & 0011011    & 000    &    &        \\
+slliw    & Shift left logical by immediate & I   & 0011011    & 001    & 0000000   &        \\
+srliw    & Shift right logical by immediate & I   & 0011011    & 101    & 0000000   &          \\
+sraiw    & Shift right arithmetic by immediate & I   & 0011011    & 101    & 0100000       &          \\
+\hline
+lwu      & Load word, unsigned  & I   & 0000011    & 110    &    &                \\
+ld       & Load double-word     & I   & 0000011    & 000    &    &                \\
+sd       & Store double-word    & S   & 0100011    & 011    &    &             \\
+
+\end{tabular}
+\end{center}
+
+\subsection*{RV64M Multiply Extension (in addition to RV32M)}
+\begin{center}
+    
+\begin{tabular}
+{T | l | c | c | c | c | T} \hline
+\rm Inst & Name                    & FMT & \rm Opcode & \rm funct3 & \rm funct7 & \rm Description (C)          \\ \hline
+mulw     & Multiply   & R   & 0111011    & 000    & 0000001   &                \\
+divw     & Signed division   & R   & 0111011    & 100    & 0000001   &             \\
+divuw    & Unsigned division   & R   & 0111011    & 101    & 0000001   &                \\
+remw     & Signed remainder   & R   & 0111011    & 110    & 0000001   &               \\
+remuw    & Unsigned remainder   & R   & 0111011    & 111    & 0000001   &        \\
+
+\end{tabular}
+\end{center}
+
+\subsection*{RV64A Atomic Extension (in addition to RV32A)}
+\begin{center}
+    
+\begin{tabular}
+{T | l | c | c | c | c | T} \hline
+\rm Inst & Name                    & FMT & \rm Opcode & \rm funct3 & \rm funct5 & \rm Description (C)          \\ \hline
+lr.d     & Load reserved   & R   & 0101111    & 011    & 00010   &                \\
+sc.d     & Store conditional   & R   & 0101111    & 011    & 00011   &             \\
+amoswap.d& Atomic swap   & R   & 0101111    & 011    & 00001   &                \\
+amoadd.d & Atomic addition   & R   & 0101111    & 011    & 00000   &               \\
+amoxor.d & Atomic bitwise XOR   & R   & 0101111    & 011    & 00100   &        \\
+amoand.d & Atomic bitwise AND   & R   & 0101111    & 011    & 01100   &        \\
+amoor.d  & Atomic bitwise OR   & R   & 0101111    & 011    & 01000   &        \\
+amomin.d & Atomic two’s complement minimum   & R   & 0101111    & 011    & 10000   &        \\
+amomax.d & Atomic two’s complement maximum   & R   & 0101111    & 011    & 10100   &        \\
+amominu.d& Atomic unsigned minimum   & R   & 0101111    & 011    & 11000   &        \\
+amomaxu.d& Atomic unsigned maximum   & R   & 0101111    & 011    & 11100   &        \\
+
+\end{tabular}
+\end{center}
+
+
+\subsection*{RV64F Single-Precision Floating-Point Extension (in addition to RV32F)}
+\begin{center}
+    
+\begin{tabular}
+{T | l | c | c | c | c | T} \hline
+\rm Inst & Name                    & FMT & \rm Opcode & \rm rs2 & \rm funct7 & \rm Description (C)          \\ \hline
+fcvt.l.s     & Convert to signed 64-bit integer   & R   & 1010011    & 00010    & 1100000   &                \\
+fcvt.lu.s    & Convert to unsigned 64-bit integer   & R   & 1010011    & 00011    & 1100000   &             \\
+fcvt.s.l     & Convert from signed 64-bit integer   & R   & 1010011    & 00010    & 1101000   &                \\
+fcvt.s.lu    & Convert from unsigned 64-bit integer   & R   & 1010011    & 00011    & 1101000   &               \\
+
+\end{tabular}
+\end{center}
+
+
+\subsection*{RV64D Double-Precision Floating-Point Extension (in addition to RV32D)}
+\begin{center}
+    
+\begin{tabular}
+{T | l | c | c | c | c | c | T} \hline
+\rm Inst & Name                    & FMT & \rm Opcode & \rm funct3/rm & \rm rs2 & \rm funct7 & \rm Description (C)          \\ \hline
+fmv.x.d     & Move from F.P. to integer register   & R   & 1010011  & 000  & 00000    & 1110001   &                \\
+fmv.d.x     & Move from integer to F.P. register   & R   & 1010011  & 000  & 00000    & 1111001   &             \\
+fcvt.l.d    & Convert to signed 64-bit integer     & R   & 1010011  &      & 00010    & 1100001   &                \\
+fcvt.lu.d   & Convert to unsigned 64-bit integer   & R   & 1010011  &      & 00011    & 1100001   &                \\
+fcvt.d.l    & Convert from signed 64-bit integer   & R   & 1010011  &      & 00010    & 1101001   &               \\
+fcvt.d.lu   & Convert from unsigned 64-bit integer & R   & 1010011  &      & 00011    & 1101001   &               \\
+
+\end{tabular}
+\end{center}
+
+
+\subsection*{RV64Q Quad-Precision Floating-Point Extension (in addition to RV32Q)}
+\begin{center}
+
+\begin{tabular}
+{T | l | c | c | c | c | c | T} \hline
+\rm Inst & Name                    & FMT & \rm Opcode & \rm funct3/rm & \rm rs2 & \rm funct7 & \rm Description (C)          \\ \hline
+fcvt.l.q    & Convert to signed 64-bit integer     & R   & 1010011  &      & 00010    & 1100011   &                \\
+fcvt.lu.q   & Convert to unsigned 64-bit integer   & R   & 1010011  &      & 00011    & 1100011   &                \\
+fcvt.q.l    & Convert from signed 64-bit integer   & R   & 1010011  &      & 00010    & 1101011   &               \\
+fcvt.q.lu   & Convert from unsigned 64-bit integer & R   & 1010011  &      & 00011    & 1101011   &               \\
+
+\end{tabular}
+\end{center}
