@@ -103,8 +103,8 @@ fdiv.s    & Flt Div               & R     & 1010011    &        & 0001100 &     
 fsgnj.s   & Flt Sign Injection    & R     & 1010011    & 000    & 0010000 &        & & rd = abs(rs1) * sgn(rs2) \\
 fsgnjn.s  & Flt Sign Neg Injection& R     & 1010011    & 001    & 0010000 &        & & rd = abs(rs1) * -sgn(rs2) \\
 fsgnjx.s  & Flt Sign Xor Injection& R     & 1010011    & 010    & 0010000 &        & & rd = rs1 * sgn(rs2)  \\
-fmin.s    & Flt Minimum           & R     & 1010011    &        & 0010100 &        & & rd = min(rs1, rs2)   \\
-fmax.s    & Flt Maximum           & R     & 1010011    &        & 0010100 &        & & rd = max(rs1, rs2)   \\
+fmin.s    & Flt Minimum           & R     & 1010011    & 000    & 0010100 &        & & rd = min(rs1, rs2)   \\
+fmax.s    & Flt Maximum           & R     & 1010011    & 001    & 0010100 &        & & rd = max(rs1, rs2)   \\
 fsqrt.s   & Flt Square Root       & R     & 1010011    &        & 0101100 & 00000  & & rd = sqrt(rs1)       \\
 \hline
 fle.s     & Float Less / Equal    & R     & 1010011    & 000    & 1010000 &        & & rd = (rs1 <= rs2) ? 1 : 0\\
@@ -145,8 +145,8 @@ fdiv.d    & Flt Div               & R     & 1010011    &        & 0001101 &     
 fsgnj.d   & Flt Sign Injection    & R     & 1010011    & 000    & 0010001 &        & & rd = abs(rs1) * sgn(rs2) \\
 fsgnjn.d  & Flt Sign Neg Injection& R     & 1010011    & 001    & 0010001 &        & & rd = abs(rs1) * -sgn(rs2) \\
 fsgnjx.d  & Flt Sign Xor Injection& R     & 1010011    & 010    & 0010001 &        & & rd = rs1 * sgn(rs2)  \\
-fmin.d    & Flt Minimum           & R     & 1010011    &        & 0010101 &        & & rd = min(rs1, rs2)   \\
-fmax.d    & Flt Maximum           & R     & 1010011    &        & 0010101 &        & & rd = max(rs1, rs2)   \\
+fmin.d    & Flt Minimum           & R     & 1010011    & 000    & 0010101 &        & & rd = min(rs1, rs2)   \\
+fmax.d    & Flt Maximum           & R     & 1010011    & 001    & 0010101 &        & & rd = max(rs1, rs2)   \\
 fsqrt.d   & Flt Square Root       & R     & 1010011    &        & 0101101 & 00000  & & rd = sqrt(rs1)       \\
 \hline
 fle.d     & Float Less / Equal    & R     & 1010011    & 000    & 1010001 &        & & rd = (rs1 <= rs2) ? 1 : 0\\
@@ -188,8 +188,8 @@ fdiv.q    & Flt Div               & R     & 1010011    &        & 0001111 &     
 fsgnj.q   & Flt Sign Injection    & R     & 1010011    & 000    & 0010011 &        & & rd = abs(rs1) * sgn(rs2) \\
 fsgnjn.q  & Flt Sign Neg Injection& R     & 1010011    & 001    & 0010011 &        & & rd = abs(rs1) * -sgn(rs2) \\
 fsgnjx.q  & Flt Sign Xor Injection& R     & 1010011    & 010    & 0010011 &        & & rd = rs1 * sgn(rs2)  \\
-fmin.q    & Flt Minimum           & R     & 1010011    &        & 0010111 &        & & rd = min(rs1, rs2)   \\
-fmax.q    & Flt Maximum           & R     & 1010011    &        & 0010111 &        & & rd = max(rs1, rs2)   \\
+fmin.q    & Flt Minimum           & R     & 1010011    & 000    & 0010111 &        & & rd = min(rs1, rs2)   \\
+fmax.q    & Flt Maximum           & R     & 1010011    & 001    & 0010111 &        & & rd = max(rs1, rs2)   \\
 fsqrt.q   & Flt Square Root       & R     & 1010011    &        & 0101111 & 00000  & & rd = sqrt(rs1)       \\
 \hline
 fle.q     & Float Less / Equal    & R     & 1010011    & 000    & 1010011 &        & & rd = (rs1 <= rs2) ? 1 : 0\\
